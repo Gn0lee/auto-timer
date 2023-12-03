@@ -9,23 +9,16 @@ module.exports = {
     'airbnb',
     'airbnb/hooks',
     'plugin:prettier/recommended',
-  ],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
+    'plugin:import/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
+    project: './tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-native'],
+  plugins: ['react', 'react-native', 'import', '@typescript-eslint', '@babel'],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx', '.ts'] }],
     'react/react-in-jsx-scope': 'off',
@@ -41,10 +34,34 @@ module.exports = {
     'react/jsx-no-bind': 2,
     'react-native/no-inline-styles': 2,
     'react-native/no-unused-styles': 2,
+    camelcase: ['error', { allow: ['unstable_settings'] }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
+    'no-use-before-define': ['error', { variables: false }],
+    'react/no-unescaped-entities': 0,
+    'react/require-default-props': 'off',
   },
   settings: {
     'import/resolver': {
       'babel-module': {},
+      typescript: {
+        project: './tsconfig.json',
+      },
+      node: {
+        paths: ['.'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
 };

@@ -3,3 +3,4 @@ babel.config.js
 metro.config.js
 tsconfig.json
 node_modules
+.eslintrc.js

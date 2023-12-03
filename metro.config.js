@@ -5,6 +5,9 @@ const { getDefaultConfig } = require('expo/metro-config');
 const config = getDefaultConfig(__dirname, {
   // [Web-only]: Enables CSS support in Metro.
   isCSSEnabled: true,
+  transformer: {
+    babelTransformerPath: require.resolve('react-native-typescript-transformer'),
+  },
 });
 
 module.exports = config;
