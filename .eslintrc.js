@@ -48,6 +48,7 @@ module.exports = {
     'no-use-before-define': ['error', { variables: false }],
     'react/no-unescaped-entities': 0,
     'react/require-default-props': 'off',
+    'import/no-named-as-default': 'off',
   },
   settings: {
     'import/resolver': {
