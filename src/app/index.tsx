@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import { Text, View } from '@components/Themed';
+import { View } from '@components/Themed';
 import Timer from '@components/Timer/Timer';
+import Button from '@components/Timer/Button';
 
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Timer />
+      <View style={styles.box}>
+        <Timer />
+        <Button />
+      </View>
     </View>
   );
 }
@@ -18,8 +21,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  box: {
+    flex: 0.5,
+    alignItems: 'center',
+    gap: 20,
   },
 });

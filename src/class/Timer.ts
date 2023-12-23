@@ -1,12 +1,12 @@
 export default class Timer {
-  interval: number;
+  ms: number;
 
   timeout?: ReturnType<typeof setInterval>;
 
   callback: () => void;
 
   constructor(interval: number) {
-    this.interval = interval;
+    this.ms = interval;
     this.timeout = undefined;
     this.callback = () => {};
   }
@@ -14,7 +14,7 @@ export default class Timer {
   start(callback = () => {}) {
     this.callback = callback;
 
-    this.timeout = setInterval(this.callback, this.interval);
+    this.timeout = setInterval(this.callback, this.ms);
   }
 
   pause(onPause?: () => void) {
@@ -30,7 +30,7 @@ export default class Timer {
       onReStart();
     }
 
-    this.timeout = setInterval(this.callback, this.interval);
+    this.timeout = setInterval(this.callback, this.ms);
   }
 
   stop(onStop?: () => void) {
@@ -39,5 +39,9 @@ export default class Timer {
     }
 
     clearInterval(this.timeout);
+  }
+
+  get interval() {
+    return this.ms;
   }
 }

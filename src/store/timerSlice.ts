@@ -3,19 +3,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface TimerState {
   time: number;
   lastTimeBackground: number | null;
+  mode: 'stop' | 'running' | 'pause';
 }
 
 const initialState: TimerState = {
   time: 0,
   lastTimeBackground: null,
+  mode: 'stop',
 };
 
 export const timerSlice = createSlice({
   name: 'timer',
   initialState,
   reducers: {
-    increment: (state) => {
-      return { ...state, time: state.time + 100 };
+    increment: (state, action: PayloadAction<number>) => {
+      return { ...state, time: state.time + action.payload };
     },
     updateElapsedTime: (state) => {
       return {
@@ -33,6 +35,9 @@ export const timerSlice = createSlice({
     resetLastTimeBackground: (state) => {
       return { ...state, lastTimeBackground: null };
     },
+    setTimerMode: (state, action: PayloadAction<TimerState['mode']>) => {
+      return { ...state, mode: action.payload };
+    },
   },
 });
 
@@ -42,6 +47,7 @@ export const {
   resetLastTimeBackground,
   updateElapsedTime,
   setLastTimeBackground,
+  setTimerMode,
 } = timerSlice.actions;
 
 export default timerSlice.reducer;

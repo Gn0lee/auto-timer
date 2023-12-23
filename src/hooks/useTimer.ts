@@ -1,18 +1,20 @@
 import { useCallback, useMemo, useEffect } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 
-import { useAppDispatch } from '@store/redux';
+import { useAppDispatch, useAppSelector } from '@store/redux';
 import { increment, reset, setLastTimeBackground, updateElapsedTime } from '@store/timerSlice';
 import Timer from '@class/Timer';
 
 export default function useTimer() {
   const dispatch = useAppDispatch();
 
+  const { mode } = useAppSelector((state) => state.timer);
+
   const timer = useMemo(() => new Timer(100), []);
 
   useEffect(() => {
     const handleAppStateChange = (nextState: AppStateStatus) => {
-      if (nextState === 'active') {
+      if (nextState === 'active' && mode === 'running') {
         timer.restart(() => {
           dispatch(updateElapsedTime());
         });
@@ -31,11 +33,11 @@ export default function useTimer() {
     return () => {
       subscription.remove();
     };
-  }, [dispatch, timer]);
+  }, [dispatch, timer, mode]);
 
   const start = useCallback(() => {
     timer.start(() => {
-      dispatch(increment());
+      dispatch(increment(timer.interval));
     });
   }, [dispatch, timer]);
 

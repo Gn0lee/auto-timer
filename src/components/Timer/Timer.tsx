@@ -21,12 +21,6 @@ function convertMsToTimerFormat(ms: number): string {
 export default function Timer() {
   const { time } = useAppSelector((state) => state.timer);
 
-  const { start } = useTimer();
-
-  useEffect(() => {
-    start();
-  }, [start]);
-
   return (
     <View>
       <Text>{convertMsToTimerFormat(time)}</Text>
