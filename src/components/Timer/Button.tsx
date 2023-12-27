@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '@store/redux';
 import Colors from '@const/Colors';
 import { setTimerMode } from '@store/timerSlice';
 
+const IconSize = 60;
+
 export default function Button() {
   const dispatch = useAppDispatch();
 
@@ -37,7 +39,7 @@ export default function Button() {
         <Pressable onPressOut={handleTimerStart}>
           <MaterialIcons
             name="play-arrow"
-            size={40}
+            size={IconSize}
             color={Colors[colorScheme ?? 'light'].tabIconDefault}
           />
         </Pressable>
@@ -51,14 +53,14 @@ export default function Button() {
         <Pressable onPressOut={handleTimerPause}>
           <MaterialIcons
             name="pause"
-            size={40}
+            size={IconSize}
             color={Colors[colorScheme ?? 'light'].tabIconDefault}
           />
         </Pressable>
         <Pressable onPressOut={handleTimerStop}>
           <MaterialIcons
             name="stop"
-            size={40}
+            size={IconSize}
             color={Colors[colorScheme ?? 'light'].tabIconDefault}
           />
         </Pressable>
@@ -71,14 +73,14 @@ export default function Button() {
       <Pressable onPressOut={handleTimerStart}>
         <MaterialIcons
           name="play-arrow"
-          size={40}
+          size={IconSize}
           color={Colors[colorScheme ?? 'light'].tabIconDefault}
         />
       </Pressable>
       <Pressable onPressOut={handleTimerStop}>
         <MaterialIcons
           name="stop"
-          size={40}
+          size={IconSize}
           color={Colors[colorScheme ?? 'light'].tabIconDefault}
         />
       </Pressable>
@@ -88,7 +90,6 @@ export default function Button() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     gap: 20,
     flexDirection: 'row',
   },

@@ -10,7 +10,7 @@ export default function useTimer() {
 
   const { mode } = useAppSelector((state) => state.timer);
 
-  const timer = useMemo(() => new Timer(100), []);
+  const timer = useMemo(() => new Timer(999), []);
 
   useEffect(() => {
     const handleAppStateChange = (nextState: AppStateStatus) => {
