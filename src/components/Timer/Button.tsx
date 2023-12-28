@@ -6,6 +6,7 @@ import { View } from '@components/Themed';
 import { useAppDispatch, useAppSelector } from '@store/redux';
 import Colors from '@const/Colors';
 import { setTimerMode } from '@store/timerSlice';
+import { useEffect } from 'react';
 
 const IconSize = 60;
 
@@ -32,6 +33,13 @@ export default function Button() {
     stop();
     dispatch(setTimerMode('stop'));
   };
+
+  useEffect(() => {
+    return () => {
+      stop();
+      dispatch(setTimerMode('stop'));
+    };
+  }, [dispatch, stop]);
 
   if (mode === 'stop') {
     return (
