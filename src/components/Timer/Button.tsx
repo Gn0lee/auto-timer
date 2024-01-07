@@ -48,7 +48,7 @@ export default function Button() {
           <MaterialIcons
             name="play-arrow"
             size={IconSize}
-            color={Colors[colorScheme ?? 'light'].tabIconDefault}
+            color={Colors[colorScheme ?? 'light'].text}
           />
         </Pressable>
       </View>
@@ -59,18 +59,10 @@ export default function Button() {
     return (
       <View style={styles.container}>
         <Pressable onPressOut={handleTimerPause}>
-          <MaterialIcons
-            name="pause"
-            size={IconSize}
-            color={Colors[colorScheme ?? 'light'].tabIconDefault}
-          />
+          <MaterialIcons name="pause" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
         </Pressable>
         <Pressable onPressOut={handleTimerStop}>
-          <MaterialIcons
-            name="stop"
-            size={IconSize}
-            color={Colors[colorScheme ?? 'light'].tabIconDefault}
-          />
+          <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
         </Pressable>
       </View>
     );
@@ -82,15 +74,11 @@ export default function Button() {
         <MaterialIcons
           name="play-arrow"
           size={IconSize}
-          color={Colors[colorScheme ?? 'light'].tabIconDefault}
+          color={Colors[colorScheme ?? 'light'].text}
         />
       </Pressable>
       <Pressable onPressOut={handleTimerStop}>
-        <MaterialIcons
-          name="stop"
-          size={IconSize}
-          color={Colors[colorScheme ?? 'light'].tabIconDefault}
-        />
+        <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
       </Pressable>
     </View>
   );
