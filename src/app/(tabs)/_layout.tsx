@@ -1,9 +1,17 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs, LinkProps } from 'expo-router';
-import { Pressable, useColorScheme, ColorSchemeName, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  useColorScheme,
+  ColorSchemeName,
+  StyleSheet,
+  PressableProps,
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Colors from '@const/Colors';
+import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
 
 type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>['name'];
@@ -18,12 +26,13 @@ type HeaderRightProps = {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   href: LinkProps<string>['href'];
   colorScheme: ColorSchemeName;
+  pressableProps?: PressableProps;
 };
 
-function HeaderRight({ name, href, colorScheme }: HeaderRightProps) {
+function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightProps) {
   return (
     <Link href={href} asChild>
-      <Pressable>
+      <Pressable {...pressableProps}>
         {({ pressed }) => (
           <FontAwesome
             name={name}
@@ -67,6 +76,21 @@ export default function TabLayout() {
           title: 'Motion',
           tabBarIcon: ({ color }) => TabBarIcon({ name: 'code', color }),
           unmountOnBlur: true,
+          headerRight: (props) =>
+            HeaderRight({
+              name: 'info-circle',
+              href: '/(modal)/motion',
+              colorScheme,
+              pressableProps: {
+                onPress: async () => {
+                  await AsyncStorage.setItem(
+                    ASYNC_STORAGE_KEYS.IS_MOTION_GUIDE_OPEN,
+                    ASYNC_STORAGE_VALUES.IS_MOTION_GUIDE_OPEN.TRUE
+                  );
+                },
+              },
+              ...props,
+            }),
         }}
       />
     </Tabs>
