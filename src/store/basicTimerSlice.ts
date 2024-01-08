@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface TimerState {
+interface BasicTimerState {
   time: number;
   lastTimeBackground: number | null;
   mode: 'stop' | 'running' | 'pause';
 }
 
-const initialState: TimerState = {
+const initialState: BasicTimerState = {
   time: 0,
   lastTimeBackground: null,
   mode: 'stop',
 };
 
-export const timerSlice = createSlice({
-  name: 'timer',
+export const basicTimerSlice = createSlice({
+  name: 'basic-timer',
   initialState,
   reducers: {
     increment: (state, action: PayloadAction<number>) => {
@@ -35,7 +35,7 @@ export const timerSlice = createSlice({
     resetLastTimeBackground: (state) => {
       return { ...state, lastTimeBackground: null };
     },
-    setTimerMode: (state, action: PayloadAction<TimerState['mode']>) => {
+    setTimerMode: (state, action: PayloadAction<BasicTimerState['mode']>) => {
       return { ...state, mode: action.payload };
     },
   },
@@ -48,6 +48,6 @@ export const {
   updateElapsedTime,
   setLastTimeBackground,
   setTimerMode,
-} = timerSlice.actions;
+} = basicTimerSlice.actions;
 
-export default timerSlice.reducer;
+export default basicTimerSlice.reducer;

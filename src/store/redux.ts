@@ -2,7 +2,7 @@ import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import logger from 'redux-logger';
 
-import timerSlice from '@store/timerSlice';
+import timerSlice from '@store/basicTimerSlice';
 
 const rootReducer = combineReducers({ timer: timerSlice });
 

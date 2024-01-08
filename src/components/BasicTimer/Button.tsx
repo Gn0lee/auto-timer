@@ -1,11 +1,11 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Pressable, useColorScheme, StyleSheet } from 'react-native';
 
-import useTimer from '@hooks/useTimer';
+import useBasicTimer from '@hooks/useBasicTimer';
 import { View } from '@components/Themed';
 import { useAppDispatch, useAppSelector } from '@store/redux';
 import Colors from '@const/Colors';
-import { setTimerMode } from '@store/timerSlice';
+import { setTimerMode } from '@store/basicTimerSlice';
 import { useEffect } from 'react';
 
 const IconSize = 60;
@@ -13,7 +13,7 @@ const IconSize = 60;
 export default function Button() {
   const dispatch = useAppDispatch();
 
-  const { start, stop, pause } = useTimer();
+  const { start, stop, pause } = useBasicTimer();
 
   const colorScheme = useColorScheme();
 

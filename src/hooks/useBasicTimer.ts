@@ -2,10 +2,10 @@ import { useCallback, useMemo, useEffect } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 
 import { useAppDispatch, useAppSelector } from '@store/redux';
-import { increment, reset, setLastTimeBackground, updateElapsedTime } from '@store/timerSlice';
+import { increment, reset, setLastTimeBackground, updateElapsedTime } from '@store/basicTimerSlice';
 import Timer from '@class/Timer';
 
-export default function useTimer() {
+export default function useBasicTimer() {
   const dispatch = useAppDispatch();
 
   const { mode } = useAppSelector((state) => state.timer);

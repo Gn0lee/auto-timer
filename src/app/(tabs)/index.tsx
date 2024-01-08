@@ -1,8 +1,8 @@
 import { StyleSheet, SafeAreaView } from 'react-native';
 
 import { View } from '@components/Themed';
-import Clock from '@components/Timer/Clock';
-import Button from '@components/Timer/Button';
+import Clock from '@components/BasicTimer/Clock';
+import Button from '@components/BasicTimer/Button';
 
 export default function Home() {
   return (

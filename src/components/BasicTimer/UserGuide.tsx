@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { Text, View } from '@components/Themed';
 
-export default function BasicTimerGuide() {
+export default function UserGuide() {
   return (
     <View>
       <View style={styles.getStartedContainer}>

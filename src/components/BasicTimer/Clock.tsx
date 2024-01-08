@@ -3,7 +3,7 @@ import { useAppSelector, RootState } from '@store/redux';
 import { createSelector } from '@reduxjs/toolkit';
 
 import { Text, View } from '@components/Themed';
-import Circle from '@components/Timer/Circle';
+import Circle from '@components/BasicTimer/Circle';
 import { convertTimeToHMS } from '@utils/time';
 
 export default function Clock() {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   number: {
     fontSize: 44,
-    fontWeight: 500,
+    fontWeight: '500',
     width: 66,
     textAlign: 'center',
   },
