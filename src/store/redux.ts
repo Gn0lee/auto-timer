@@ -3,8 +3,9 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import logger from 'redux-logger';
 
 import timerSlice from '@store/basicTimerSlice';
+import motionTimerSlice from '@store/motionTimerSlice';
 
-const rootReducer = combineReducers({ timer: timerSlice });
+const rootReducer = combineReducers({ timer: timerSlice, motion: motionTimerSlice });
 
 const middleWare: Middleware[] = [];
 
