@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet } from 'react-native';
 
 import { Text, View } from '@components/Themed';
-import MotionTimerGuide from '@components/MotionTimerGuide';
+import UserGuide from '@components/MotionTimer/UserGuide';
 
 export default function MotionGuideModal() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>움직임 감지 모드</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <MotionTimerGuide />
+      <UserGuide />
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
   );

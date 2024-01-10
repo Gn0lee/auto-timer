@@ -1,57 +1,36 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
-import { router } from 'expo-router';
-import {
-  DeviceMotion,
-  DeviceMotionMeasurement,
-  AccelerometerMeasurement,
-  Accelerometer,
-} from 'expo-sensors';
-
-import { View, Text } from '@components/Themed';
+import { View } from '@components/Themed';
 import useGetDeviceMotionPermission from '@hooks/useGetDeviceMotionPermission';
-import { ASYNC_STORAGE_VALUES, ASYNC_STORAGE_KEYS } from '@const/AsyncStorage';
-import useMotionTimer from '@hooks/useMotionTimer';
-import { Pressable } from 'react-native';
+
+import Button from '@components/MotionTimer/Button';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Clock from '@components/MotionTimer/Clock';
+import useMotionTimerGuideHandler from '@hooks/useMotionTimerGuideHandler';
 
 export default function Motion() {
   useGetDeviceMotionPermission();
 
-  useMotionTimer();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const isMotionGuideOpen = await AsyncStorage.getItem(
-          ASYNC_STORAGE_KEYS.IS_MOTION_GUIDE_OPEN
-        );
-
-        if (
-          isMotionGuideOpen === null ||
-          isMotionGuideOpen !== ASYNC_STORAGE_VALUES.IS_MOTION_GUIDE_OPEN.TRUE
-        ) {
-          router.push('/(modal)/motion');
-          await AsyncStorage.setItem(
-            ASYNC_STORAGE_KEYS.IS_MOTION_GUIDE_OPEN,
-            ASYNC_STORAGE_VALUES.IS_MOTION_GUIDE_OPEN.TRUE
-          );
-        }
-      } catch (e) {
-        // eslint-disable-next-line
-        console.info(e);
-      }
-    })();
-  }, []);
+  useMotionTimerGuideHandler();
 
   return (
-    <View>
-      <Pressable
-        onPress={() => {
-          Accelerometer.setUpdateInterval(1000);
-        }}
-      >
-        <Text>Motion</Text>
-      </Pressable>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.box}>
+        <Clock />
+        <Button />
+      </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  box: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 20,
+    padding: 15,
+  },
+});

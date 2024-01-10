@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   circle: {
     width: 8,
     height: 8,
-    borderRadius: '50%',
+    borderRadius: 4,
     backgroundColor: '#F1F5F9',
   },
 });

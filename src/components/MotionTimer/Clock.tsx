@@ -8,7 +8,7 @@ import { convertTimeToHMS } from '@utils/time';
 
 export default function Clock() {
   const { hours, seconds, minutes } = useAppSelector(
-    createSelector([(state: RootState) => state.timer.time], convertTimeToHMS)
+    createSelector([(state: RootState) => state.motion.time], convertTimeToHMS)
   );
 
   return (

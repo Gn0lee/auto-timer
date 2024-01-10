@@ -1,6 +1,5 @@
 import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import logger from 'redux-logger';
 
 import timerSlice from '@store/basicTimerSlice';
 import motionTimerSlice from '@store/motionTimerSlice';
@@ -9,14 +8,9 @@ const rootReducer = combineReducers({ timer: timerSlice, motion: motionTimerSlic
 
 const middleWare: Middleware[] = [];
 
-if (process.env.EXPO_PUBLIC_DEBUG_MODE) {
-  middleWare.push(logger);
-}
-
 const redux = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleWare),
-  devTools: process.env.EXPO_PUBLIC_DEBUG_MODE,
 });
 
 export type RootState = ReturnType<typeof redux.getState>;
