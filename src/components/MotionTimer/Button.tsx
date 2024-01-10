@@ -73,7 +73,7 @@ export default function Button() {
             />
           </Pressable>
         </View>
-        <Text>자동 일시 정지</Text>
+        <Text style={styles.autoStop}>자동 일시 정지</Text>
       </View>
     );
   }
@@ -101,5 +101,10 @@ const styles = StyleSheet.create({
   },
   textBox: {
     gap: 30,
+    alignItems: 'center',
+  },
+  autoStop: {
+    fontSize: 20,
+    fontWeight: '500',
   },
 });

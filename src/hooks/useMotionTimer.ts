@@ -50,7 +50,7 @@ export default function useMotionTimer() {
       })
     );
 
-    Accelerometer.setUpdateInterval(1000);
+    Accelerometer.setUpdateInterval(800);
   }, [dispatch]);
 
   const pause = useCallback(() => {
