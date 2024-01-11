@@ -20,6 +20,7 @@
     "@react-navigation/native": "^6.0.2",
     "@reduxjs/toolkit": "^2.0.1",
     "expo": "~49.0.15",
+    "expo-battery": "~7.3.0",
     "expo-dev-client": "~2.4.12",
     "expo-font": "~11.4.0",
     "expo-keep-awake": "~12.3.0",

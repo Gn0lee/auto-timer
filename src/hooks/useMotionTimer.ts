@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useEffect, useState } from 'react';
 import { Accelerometer } from 'expo-sensors';
 import { deactivateKeepAwake, activateKeepAwakeAsync } from 'expo-keep-awake';
+import { addBatteryLevelListener, getBatteryLevelAsync } from 'expo-battery';
+import { Alert } from 'react-native';
 
 import { useAppDispatch, useAppSelector } from '@store/redux';
 import Timer from '@class/Timer';
@@ -16,7 +18,11 @@ import {
 export default function useMotionTimer() {
   const dispatch = useAppDispatch();
 
-  const [subscription, setSubscription] = useState<ReturnType<typeof Accelerometer.addListener>>();
+  const [expoSensorSubscription, setExpoSensorSubscription] =
+    useState<ReturnType<typeof Accelerometer.addListener>>();
+
+  const [expoBatterySubscription, setExpoBatterySubscription] =
+    useState<ReturnType<typeof addBatteryLevelListener>>();
 
   const { mode } = useAppSelector((state) => state.motion);
 
@@ -34,12 +40,23 @@ export default function useMotionTimer() {
         dispatch(increment(timer.interval));
       });
     }
+
+    if (mode === 'stop') {
+      timer.stop();
+    }
   }, [mode, timer, dispatch]);
 
-  const start = useCallback(() => {
+  const start = useCallback(async () => {
+    const batteryLevel = await getBatteryLevelAsync();
+
+    if (batteryLevel < 0.2) {
+      Alert.alert('배터리 부족', '기기를 충전해 주세요', [{ text: '확인' }]);
+      return;
+    }
+
     dispatch(startReducer());
 
-    setSubscription(
+    setExpoSensorSubscription(
       Accelerometer.addListener((listener) => {
         const { z } = listener;
 
@@ -53,7 +70,15 @@ export default function useMotionTimer() {
       })
     );
 
-    Accelerometer.setUpdateInterval(800);
+    setExpoBatterySubscription(
+      addBatteryLevelListener((listener) => {
+        if (listener.batteryLevel < 0.65) {
+          dispatch(pauseByButton());
+        }
+      })
+    );
+
+    Accelerometer.setUpdateInterval(500);
   }, [dispatch]);
 
   const pause = useCallback(() => {
@@ -62,23 +87,29 @@ export default function useMotionTimer() {
     timer.pause(() => {
       dispatch(pauseByButton());
 
-      if (subscription) {
-        subscription.remove();
+      if (expoSensorSubscription) {
+        expoSensorSubscription.remove();
+      }
+
+      if (expoBatterySubscription) {
+        expoBatterySubscription.remove();
       }
     });
-  }, [timer, dispatch, subscription]);
+  }, [timer, dispatch, expoSensorSubscription, expoBatterySubscription]);
 
   const stop = useCallback(() => {
+    dispatch(stopReducer());
+
     deactivateKeepAwake();
 
-    timer.stop(() => {
-      dispatch(stopReducer());
+    if (expoSensorSubscription) {
+      expoSensorSubscription.remove();
+    }
 
-      if (subscription) {
-        subscription.remove();
-      }
-    });
-  }, [dispatch, timer, subscription]);
+    if (expoBatterySubscription) {
+      expoBatterySubscription.remove();
+    }
+  }, [dispatch, expoSensorSubscription, expoBatterySubscription]);
 
   return { start, stop, pause };
 }
