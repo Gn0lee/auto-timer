@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useEffect, useState } from 'react';
 import { Accelerometer } from 'expo-sensors';
+import { deactivateKeepAwake, activateKeepAwakeAsync } from 'expo-keep-awake';
 
 import { useAppDispatch, useAppSelector } from '@store/redux';
 import Timer from '@class/Timer';
@@ -27,6 +28,8 @@ export default function useMotionTimer() {
     }
 
     if (mode === 'running') {
+      activateKeepAwakeAsync();
+
       timer.start(() => {
         dispatch(increment(timer.interval));
       });
@@ -54,6 +57,8 @@ export default function useMotionTimer() {
   }, [dispatch]);
 
   const pause = useCallback(() => {
+    deactivateKeepAwake();
+
     timer.pause(() => {
       dispatch(pauseByButton());
 
@@ -64,6 +69,8 @@ export default function useMotionTimer() {
   }, [timer, dispatch, subscription]);
 
   const stop = useCallback(() => {
+    deactivateKeepAwake();
+
     timer.stop(() => {
       dispatch(stopReducer());
 
