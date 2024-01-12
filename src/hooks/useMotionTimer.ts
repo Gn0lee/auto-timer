@@ -60,7 +60,7 @@ export default function useMotionTimer() {
       Accelerometer.addListener((listener) => {
         const { z } = listener;
 
-        if (z < -0.9) {
+        if (z < -0.8) {
           dispatch(pauseByMotion());
         }
 
@@ -81,35 +81,39 @@ export default function useMotionTimer() {
     Accelerometer.setUpdateInterval(500);
   }, [dispatch]);
 
+  useEffect(() => {
+    return () => {
+      expoSensorSubscription?.remove();
+    };
+  }, [expoSensorSubscription]);
+
+  useEffect(() => {
+    return () => {
+      expoBatterySubscription?.remove();
+    };
+  }, [expoBatterySubscription]);
+
   const pause = useCallback(() => {
     deactivateKeepAwake();
 
     timer.pause(() => {
       dispatch(pauseByButton());
 
-      if (expoSensorSubscription) {
-        expoSensorSubscription.remove();
-      }
+      setExpoSensorSubscription(undefined);
 
-      if (expoBatterySubscription) {
-        expoBatterySubscription.remove();
-      }
+      setExpoBatterySubscription(undefined);
     });
-  }, [timer, dispatch, expoSensorSubscription, expoBatterySubscription]);
+  }, [timer, dispatch]);
 
   const stop = useCallback(() => {
     dispatch(stopReducer());
 
     deactivateKeepAwake();
 
-    if (expoSensorSubscription) {
-      expoSensorSubscription.remove();
-    }
+    setExpoSensorSubscription(undefined);
 
-    if (expoBatterySubscription) {
-      expoBatterySubscription.remove();
-    }
-  }, [dispatch, expoSensorSubscription, expoBatterySubscription]);
+    setExpoBatterySubscription(undefined);
+  }, [dispatch]);
 
   return { start, stop, pause };
 }

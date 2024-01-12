@@ -1,15 +1,26 @@
+import { useEffect } from 'react';
+
 import { View } from '@components/Themed';
 import useGetDeviceMotionPermission from '@hooks/useGetDeviceMotionPermission';
-
 import Button from '@components/MotionTimer/Button';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import Clock from '@components/MotionTimer/Clock';
 import useMotionTimerGuideHandler from '@hooks/useMotionTimerGuideHandler';
+import { useAppDispatch } from '@store/redux';
+import { stop } from '@store/motionTimerSlice';
 
 export default function Motion() {
+  const dispatch = useAppDispatch();
+
   useGetDeviceMotionPermission();
 
   useMotionTimerGuideHandler();
+
+  useEffect(() => {
+    return () => {
+      dispatch(stop());
+    };
+  }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>
