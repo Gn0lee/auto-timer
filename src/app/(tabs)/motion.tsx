@@ -12,7 +12,7 @@ import { stop } from '@store/motionTimerSlice';
 export default function Motion() {
   const dispatch = useAppDispatch();
 
-  useGetDeviceMotionPermission();
+  const { requestGrant, granted } = useGetDeviceMotionPermission();
 
   useMotionTimerGuideHandler();
 
@@ -26,7 +26,7 @@ export default function Motion() {
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
         <Clock />
-        <Button />
+        <Button requestGrant={requestGrant} granted={granted} />
       </View>
     </SafeAreaView>
   );

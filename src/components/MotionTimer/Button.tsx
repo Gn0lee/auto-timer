@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, useColorScheme, StyleSheet } from 'react-native';
+import { Pressable, useColorScheme, StyleSheet, Alert } from 'react-native';
 
 import { View, Text } from '@components/Themed';
 import { useAppSelector } from '@store/redux';
@@ -8,7 +8,12 @@ import useMotionTimer from '@hooks/useMotionTimer';
 
 const IconSize = 60;
 
-export default function Button() {
+interface ButtonProps {
+  granted?: boolean;
+  requestGrant: () => Promise<void>;
+}
+
+export default function Button({ granted, requestGrant }: ButtonProps) {
   const { start, stop, pause } = useMotionTimer();
 
   const colorScheme = useColorScheme();
@@ -16,7 +21,11 @@ export default function Button() {
   const { mode } = useAppSelector((state) => state.motion);
 
   const handleTimerStart = () => {
-    start();
+    if (granted) {
+      start();
+    } else {
+      requestGrant();
+    }
   };
 
   const handleTimerPause = () => {

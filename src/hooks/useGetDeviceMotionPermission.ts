@@ -17,5 +17,10 @@ export default function useGetDeviceMotionPermission() {
     })();
   }, []);
 
-  return { granted };
+  const requestGrant = async () => {
+    const { granted: afterRequestGranted } = await DeviceMotion.requestPermissionsAsync();
+    setGranted(afterRequestGranted);
+  };
+
+  return { granted, requestGrant };
 }
