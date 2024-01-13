@@ -93,6 +93,29 @@ export default function TabLayout() {
             }),
         }}
       />
+      <Tabs.Screen
+        name="face"
+        options={{
+          title: 'Face',
+          tabBarIcon: ({ color }) => TabBarIcon({ name: 'code', color }),
+          unmountOnBlur: true,
+          headerRight: (props) =>
+            HeaderRight({
+              name: 'info-circle',
+              href: '/(modal)/face',
+              colorScheme,
+              pressableProps: {
+                onPress: async () => {
+                  await AsyncStorage.setItem(
+                    ASYNC_STORAGE_KEYS.IS_FACE_GUIDE_OPEN,
+                    ASYNC_STORAGE_VALUES.IS_FACE_GUIDE_OPEN.TRUE
+                  );
+                },
+              },
+              ...props,
+            }),
+        }}
+      />
     </Tabs>
   );
 }
