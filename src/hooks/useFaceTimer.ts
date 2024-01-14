@@ -11,7 +11,6 @@ import {
   stop as stopReducer,
   start as startReducer,
   increment,
-  pauseByFace,
 } from '@store/faceTimerSlice';
 
 export default function useFaceTimer() {

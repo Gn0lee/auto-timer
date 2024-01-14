@@ -1,10 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, useColorScheme, StyleSheet } from 'react-native';
+import { Pressable, useColorScheme, StyleSheet, Alert } from 'react-native';
 
 import { View, Text } from '@components/Themed';
 import { useAppSelector } from '@store/redux';
 import Colors from '@const/Colors';
-import useMotionTimer from '@hooks/useMotionTimer';
+import useFaceTimer from '@hooks/useFaceTimer';
 
 const IconSize = 60;
 
@@ -14,11 +14,11 @@ interface ButtonProps {
 }
 
 export default function Button({ granted, requestGrant }: ButtonProps) {
-  const { start, stop, pause } = useMotionTimer();
+  const { start, stop, pause } = useFaceTimer();
 
   const colorScheme = useColorScheme();
 
-  const { mode } = useAppSelector((state) => state.motion);
+  const { mode } = useAppSelector((state) => state.face);
 
   const handleTimerStart = () => {
     if (granted) {
@@ -63,7 +63,7 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
     );
   }
 
-  if (mode === 'pause-motion') {
+  if (mode === 'pause-face') {
     return (
       <View style={styles.textBox}>
         <View style={styles.container}>
