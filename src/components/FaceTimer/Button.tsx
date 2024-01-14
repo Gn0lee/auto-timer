@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, useColorScheme, StyleSheet, Alert } from 'react-native';
+import { Pressable, useColorScheme, StyleSheet } from 'react-native';
 
 import { View, Text } from '@components/Themed';
 import { useAppSelector } from '@store/redux';

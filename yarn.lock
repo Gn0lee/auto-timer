@@ -2321,6 +2321,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@tensorflow-models/blazeface@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow-models/blazeface/-/blazeface-0.1.0.tgz#324efe5cc419454b71bcb10924428d7f8173b6ce"
+  integrity sha512-Qc5Wii8/OE5beC7XfehkhF9SEFLaPbVKnxxalV0T9JXsUynXqvLommc9Eko7b8zXKy4SJ1BtVlcX2cmCzQrn9A==
+
 "@tensorflow/tfjs-backend-cpu@4.16.0":
   version "4.16.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-4.16.0.tgz#acc1dc0fcd26a38b07b3ffd38fcab0c543506353"
@@ -2329,7 +2334,7 @@
     "@types/seedrandom" "^2.4.28"
     seedrandom "^3.0.5"
 
-"@tensorflow/tfjs-backend-webgl@4.16.0":
+"@tensorflow/tfjs-backend-webgl@4.16.0", "@tensorflow/tfjs-backend-webgl@^4.16.0":
   version "4.16.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-webgl/-/tfjs-backend-webgl-4.16.0.tgz#2c24ca58b4c1d783ec8616fab30f334074d7a7cd"
   integrity sha512-cIGZWuY892iwTRokbDj3qsLi0AlpQn+U7rzB1mddhHrWr9kBXrrnAvIq0h2aiFzRFNePWUcsbgK+HmYG32kosg==
