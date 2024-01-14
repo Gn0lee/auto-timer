@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { Camera } from 'expo-camera';
 
 import { View, Text } from '@components/Themed';
-
 import useFaceTimerGuideHandler from '@hooks/useFaceTimerGuideHandler';
+import useGetCameraPermission from '@hooks/useGetCameraPermission';
 
 export default function Motion() {
   useFaceTimerGuideHandler();
+
+  useGetCameraPermission();
 
   return (
     <SafeAreaView style={styles.container}>
