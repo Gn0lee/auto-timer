@@ -5,11 +5,15 @@ export type FaceTimerMode = 'running' | 'pause-button' | 'stop' | 'pause-face';
 interface FaceTimerState {
   time: number;
   mode: FaceTimerMode;
+  faceDetectionTimeout?: ReturnType<typeof setTimeout>;
+  requestAnimationFrames: number[];
 }
 
 const initialState: FaceTimerState = {
   time: 0,
   mode: 'stop',
+  faceDetectionTimeout: undefined,
+  requestAnimationFrames: [],
 };
 
 export const faceTimerSlice = createSlice({
@@ -26,14 +30,39 @@ export const faceTimerSlice = createSlice({
       return { ...state, mode: 'pause-face' };
     },
     stop: (state) => {
-      return { ...state, time: 0, mode: 'stop' };
+      return { ...state, time: 0, mode: 'stop', requestAnimationFrames: [] };
     },
     start: (state) => {
       return { ...state, mode: 'running' };
     },
+    setFaceDetectionTimeout: (
+      state,
+      action: PayloadAction<FaceTimerState['faceDetectionTimeout']>
+    ) => {
+      return { ...state, faceDetectionTimeout: action.payload };
+    },
+    addRequestAnimationFrame: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        requestAnimationFrames: [
+          ...state.requestAnimationFrames.slice(
+            Math.max(state.requestAnimationFrames.length - 5, 0)
+          ),
+          action.payload,
+        ],
+      };
+    },
   },
 });
 
-export const { increment, start, pauseByButton, pauseByFace, stop } = faceTimerSlice.actions;
+export const {
+  increment,
+  start,
+  pauseByButton,
+  pauseByFace,
+  stop,
+  setFaceDetectionTimeout,
+  addRequestAnimationFrame,
+} = faceTimerSlice.actions;
 
 export default faceTimerSlice.reducer;

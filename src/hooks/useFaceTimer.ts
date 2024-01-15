@@ -11,6 +11,7 @@ import {
   stop as stopReducer,
   start as startReducer,
   increment,
+  setFaceDetectionTimeout,
 } from '@store/faceTimerSlice';
 
 export default function useFaceTimer() {
@@ -19,7 +20,7 @@ export default function useFaceTimer() {
   const [expoBatterySubscription, setExpoBatterySubscription] =
     useState<ReturnType<typeof addBatteryLevelListener>>();
 
-  const { mode } = useAppSelector((state) => state.face);
+  const { mode, requestAnimationFrames } = useAppSelector((state) => state.face);
 
   const timer = useMemo(() => new Timer(999), []);
 
@@ -71,6 +72,7 @@ export default function useFaceTimer() {
 
     timer.pause(() => {
       dispatch(pauseByButton());
+      dispatch(setFaceDetectionTimeout(undefined));
 
       setExpoBatterySubscription(undefined);
     });
@@ -78,11 +80,18 @@ export default function useFaceTimer() {
 
   const stop = useCallback(() => {
     dispatch(stopReducer());
+    dispatch(setFaceDetectionTimeout(undefined));
+
+    console.log(requestAnimationFrames, 'stop');
+
+    requestAnimationFrames.forEach((frame) => {
+      window.cancelAnimationFrame(frame);
+    });
 
     deactivateKeepAwake();
 
     setExpoBatterySubscription(undefined);
-  }, [dispatch]);
+  }, [dispatch, requestAnimationFrames]);
 
   return { start, stop, pause };
 }

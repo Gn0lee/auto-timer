@@ -6,7 +6,12 @@ import * as tf from '@tensorflow/tfjs';
 import * as blazeFace from '@tensorflow-models/blazeface';
 import '@tensorflow/tfjs-backend-webgl';
 
-import { pauseByFace } from '@store/faceTimerSlice';
+import {
+  addRequestAnimationFrame,
+  pauseByFace,
+  setFaceDetectionTimeout,
+  start,
+} from '@store/faceTimerSlice';
 import { useAppSelector, useAppDispatch } from '@store/redux';
 
 const textureDims =
@@ -19,7 +24,7 @@ const TensorCamera = cameraWithTensors(Camera);
 export default function useFaceDetectionCamera() {
   const dispatch = useAppDispatch();
 
-  const { mode } = useAppSelector((state) => state.face);
+  const { mode, faceDetectionTimeout } = useAppSelector((state) => state.face);
 
   // ref 타입 지정
   const tensorCameraRef = createRef<any>();
@@ -34,6 +39,7 @@ export default function useFaceDetectionCamera() {
   }, []);
 
   const handleTensorflowReady = async (images: IterableIterator<tf.Tensor3D>) => {
+    let index = 0;
     const loop = async () => {
       const { done, value: nextImageTensor } = images.next();
 
@@ -42,22 +48,38 @@ export default function useFaceDetectionCamera() {
 
         const predictions = await blaze.estimateFaces(nextImageTensor, false);
 
-        console.log(predictions);
+        if (predictions.length < 1 && index > 0) {
+          dispatch(pauseByFace());
+        } else {
+          dispatch(start());
+        }
       }
 
-      // todo: 렌더링 해제 및 타이머 멈춤시 타임아웃 clear
+      dispatch(
+        setFaceDetectionTimeout(
+          setTimeout(() => {
+            const a = requestAnimationFrame(loop);
 
-      setTimeout(() => {
-        requestAnimationFrame(loop);
-      }, 2000);
+            dispatch(addRequestAnimationFrame(a));
+          }, 2000)
+        )
+      );
+
+      index += 1;
     };
 
     loop();
   };
 
+  useEffect(() => {
+    return () => {
+      clearTimeout(faceDetectionTimeout);
+    };
+  }, [faceDetectionTimeout]);
+
   return {
     TensorCamera:
-      isTensorFlowReady && mode === 'running' ? (
+      isTensorFlowReady && (mode === 'running' || mode === 'pause-face') ? (
         <TensorCamera
           ref={tensorCameraRef}
           style={styles.camera}
@@ -67,7 +89,7 @@ export default function useFaceDetectionCamera() {
           resizeHeight={CAMERA_SIZE.height}
           resizeWidth={CAMERA_SIZE.width}
           resizeDepth={3}
-          autorender
+          autorender={false}
           useCustomShadersToResize={false}
           onReady={handleTensorflowReady}
         />

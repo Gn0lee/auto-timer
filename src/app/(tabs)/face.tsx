@@ -1,25 +1,28 @@
-import { Platform, SafeAreaView, StyleSheet } from 'react-native';
-import { createRef } from 'react';
-import { Camera, CameraType } from 'expo-camera';
-import * as tf from '@tensorflow/tfjs';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 
 import { View, Text } from '@components/Themed';
 import useFaceTimerGuideHandler from '@hooks/useFaceTimerGuideHandler';
 import useGetCameraPermission from '@hooks/useGetCameraPermission';
 import Button from '@components/FaceTimer/Button';
 import useFaceDetectionCamera from '@hooks/useFaceDetectionCamera';
-
-const CAMERA_SIZE = { height: 480, width: 320 };
-
-const textureDims =
-  Platform.OS === 'ios' ? { height: 1920, width: 1080 } : { height: 1200, width: 1600 };
+import { useAppDispatch } from '@store/redux';
+import { stop } from '@store/faceTimerSlice';
 
 export default function Motion() {
+  const dispatch = useAppDispatch();
+
   useFaceTimerGuideHandler();
 
   const { requestPermission, granted } = useGetCameraPermission();
 
   const { TensorCamera } = useFaceDetectionCamera();
+
+  useEffect(() => {
+    return () => {
+      dispatch(stop());
+    };
+  }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,10 +46,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 20,
     padding: 15,
-  },
-  camera: {
-    position: 'absolute',
-    width: CAMERA_SIZE.width,
-    height: CAMERA_SIZE.height,
   },
 });
