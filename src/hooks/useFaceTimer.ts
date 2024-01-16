@@ -20,7 +20,7 @@ export default function useFaceTimer() {
   const [expoBatterySubscription, setExpoBatterySubscription] =
     useState<ReturnType<typeof addBatteryLevelListener>>();
 
-  const { mode, requestAnimationFrames } = useAppSelector((state) => state.face);
+  const { mode } = useAppSelector((state) => state.face);
 
   const timer = useMemo(() => new Timer(999), []);
 
@@ -82,16 +82,10 @@ export default function useFaceTimer() {
     dispatch(stopReducer());
     dispatch(setFaceDetectionTimeout(undefined));
 
-    console.log(requestAnimationFrames, 'stop');
-
-    requestAnimationFrames.forEach((frame) => {
-      window.cancelAnimationFrame(frame);
-    });
-
     deactivateKeepAwake();
 
     setExpoBatterySubscription(undefined);
-  }, [dispatch, requestAnimationFrames]);
+  }, [dispatch]);
 
   return { start, stop, pause };
 }

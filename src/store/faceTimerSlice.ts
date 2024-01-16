@@ -6,14 +6,12 @@ interface FaceTimerState {
   time: number;
   mode: FaceTimerMode;
   faceDetectionTimeout?: ReturnType<typeof setTimeout>;
-  requestAnimationFrames: number[];
 }
 
 const initialState: FaceTimerState = {
   time: 0,
   mode: 'stop',
   faceDetectionTimeout: undefined,
-  requestAnimationFrames: [],
 };
 
 export const faceTimerSlice = createSlice({
@@ -30,7 +28,7 @@ export const faceTimerSlice = createSlice({
       return { ...state, mode: 'pause-face' };
     },
     stop: (state) => {
-      return { ...state, time: 0, mode: 'stop', requestAnimationFrames: [] };
+      return { ...state, time: 0, mode: 'stop' };
     },
     start: (state) => {
       return { ...state, mode: 'running' };
@@ -41,28 +39,10 @@ export const faceTimerSlice = createSlice({
     ) => {
       return { ...state, faceDetectionTimeout: action.payload };
     },
-    addRequestAnimationFrame: (state, action: PayloadAction<number>) => {
-      return {
-        ...state,
-        requestAnimationFrames: [
-          ...state.requestAnimationFrames.slice(
-            Math.max(state.requestAnimationFrames.length - 5, 0)
-          ),
-          action.payload,
-        ],
-      };
-    },
   },
 });
 
-export const {
-  increment,
-  start,
-  pauseByButton,
-  pauseByFace,
-  stop,
-  setFaceDetectionTimeout,
-  addRequestAnimationFrame,
-} = faceTimerSlice.actions;
+export const { increment, start, pauseByButton, pauseByFace, stop, setFaceDetectionTimeout } =
+  faceTimerSlice.actions;
 
 export default faceTimerSlice.reducer;
