@@ -49,7 +49,7 @@ export default function useMotionTimer() {
   const start = useCallback(async () => {
     const batteryLevel = await getBatteryLevelAsync();
 
-    if (batteryLevel < 0.2) {
+    if (batteryLevel !== -1 && batteryLevel < 0.2) {
       Alert.alert('배터리 부족', '기기를 충전해 주세요', [{ text: '확인' }]);
       return;
     }
