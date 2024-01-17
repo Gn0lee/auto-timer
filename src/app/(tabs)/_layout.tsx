@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Link, Tabs, LinkProps } from 'expo-router';
 import {
   Pressable,
@@ -13,13 +14,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@const/Colors';
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
 
-type TabBarIconProps = {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+type TabBarMaterialCommunityIconProps = {
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
 };
 
-function TabBarIcon({ name, color }: TabBarIconProps) {
-  return <FontAwesome name={name} size={28} color={color} style={styles.tabBarIcon} />;
+function TabBarMaterialCommunityIcon({ name, color }: TabBarMaterialCommunityIconProps) {
+  return <MaterialCommunityIcons name={name} size={28} color={color} style={styles.tabBarIcon} />;
 }
 
 type HeaderRightProps = {
@@ -58,8 +59,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Basic',
-          tabBarIcon: ({ color }) => TabBarIcon({ name: 'code', color }),
+          title: '기본 모드',
+          tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'timer-outline', color }),
           headerRight: (props) =>
             HeaderRight({
               name: 'info-circle',
@@ -68,13 +69,14 @@ export default function TabLayout() {
               ...props,
             }),
           unmountOnBlur: true,
+          tabBarShowLabel: false,
         }}
       />
       <Tabs.Screen
         name="motion"
         options={{
-          title: 'Motion',
-          tabBarIcon: ({ color }) => TabBarIcon({ name: 'code', color }),
+          title: '움직임 감지 모드',
+          tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'flip-to-back', color }),
           unmountOnBlur: true,
           headerRight: (props) =>
             HeaderRight({
@@ -91,13 +93,14 @@ export default function TabLayout() {
               },
               ...props,
             }),
+          tabBarShowLabel: false,
         }}
       />
       <Tabs.Screen
         name="face"
         options={{
-          title: 'Face',
-          tabBarIcon: ({ color }) => TabBarIcon({ name: 'code', color }),
+          tabBarIcon: ({ color }) =>
+            TabBarMaterialCommunityIcon({ name: 'face-recognition', color }),
           unmountOnBlur: true,
           headerRight: (props) =>
             HeaderRight({
@@ -114,6 +117,8 @@ export default function TabLayout() {
               },
               ...props,
             }),
+          tabBarShowLabel: false,
+          title: '얼굴 감지 모드',
         }}
       />
     </Tabs>
