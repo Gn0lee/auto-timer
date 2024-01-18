@@ -1,13 +1,14 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 
-import { View, Text } from '@components/Themed';
+import { View } from '@components/Themed';
 import useFaceTimerGuideHandler from '@hooks/useFaceTimerGuideHandler';
 import useGetCameraPermission from '@hooks/useGetCameraPermission';
 import Button from '@components/FaceTimer/Button';
 import useFaceDetectionCamera from '@hooks/useFaceDetectionCamera';
 import { useAppDispatch } from '@store/redux';
 import { stop } from '@store/faceTimerSlice';
+import Clock from '@components/FaceTimer/Clock';
 
 export default function Motion() {
   const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ export default function Motion() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
-        <Text>Face</Text>
+        <Clock />
         <Button requestGrant={requestPermission} granted={granted} />
         {TensorCamera}
       </View>
