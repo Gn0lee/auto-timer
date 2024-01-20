@@ -12,6 +12,7 @@ import {
   start as startReducer,
   increment,
   setFaceDetectionTimeout,
+  setIsFaceDetectionRunning,
 } from '@store/faceTimerSlice';
 
 export default function useFaceTimer() {
@@ -72,6 +73,7 @@ export default function useFaceTimer() {
 
     timer.pause(() => {
       dispatch(pauseByButton());
+      dispatch(setIsFaceDetectionRunning(false));
       dispatch(setFaceDetectionTimeout(undefined));
 
       setExpoBatterySubscription(undefined);
@@ -81,6 +83,7 @@ export default function useFaceTimer() {
   const stop = useCallback(() => {
     dispatch(stopReducer());
     dispatch(setFaceDetectionTimeout(undefined));
+    dispatch(setIsFaceDetectionRunning(false));
 
     deactivateKeepAwake();
 

@@ -7,7 +7,12 @@ import {
   FaceDetectorClassifications,
 } from 'expo-face-detector';
 
-import { pauseByFace, setFaceDetectionTimeout, start } from '@store/faceTimerSlice';
+import {
+  pauseByFace,
+  setFaceDetectionTimeout,
+  setIsFaceDetectionRunning,
+  start,
+} from '@store/faceTimerSlice';
 import { useAppSelector, useAppDispatch } from '@store/redux';
 
 const CAMERA_SIZE = { height: 480, width: 320 };
@@ -15,12 +20,30 @@ const CAMERA_SIZE = { height: 480, width: 320 };
 export default function useFaceDetectionCamera() {
   const dispatch = useAppDispatch();
 
-  const { mode, faceDetectionTimeout } = useAppSelector((state) => state.face);
+  const { mode, faceDetectionTimeout, isFaceDetectionRunning } = useAppSelector(
+    (state) => state.face
+  );
 
   const handleFacesDetected = ({ faces }: FaceDetectionResult) => {
-    if (faces.length < 1) {
+    if (!isFaceDetectionRunning) {
+      dispatch(setIsFaceDetectionRunning(true));
+
+      dispatch(
+        setFaceDetectionTimeout(
+          setTimeout(() => {
+            dispatch(pauseByFace());
+          }, 1000)
+        )
+      );
+
+      return;
+    }
+
+    if (isFaceDetectionRunning && faces.length < 1) {
       dispatch(pauseByFace());
     } else {
+      dispatch(setIsFaceDetectionRunning(true));
+
       clearTimeout(faceDetectionTimeout);
 
       dispatch(start());
