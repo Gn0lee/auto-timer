@@ -3,8 +3,10 @@ import type { Locales, Translations } from '@i18n/i18n-types';
 import { loadedFormatters, loadedLocales, locales } from '@i18n/i18n-util';
 
 const localeTranslationLoaders = {
-  en: () => import('@i18n/en'),
-  ko: () => import('@i18n/ko'),
+  // eslint-disable-next-line global-require
+  en: () => require('@i18n/en'),
+  // eslint-disable-next-line global-require
+  ko: () => require('@i18n/ko'),
 };
 
 const updateDictionary = (locale: Locales, dictionary: Partial<Translations>): Translations => {
