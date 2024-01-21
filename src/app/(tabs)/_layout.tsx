@@ -10,10 +10,10 @@ import {
   PressableProps,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 import Colors from '@const/Colors';
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
-import { useI18nContext } from '@i18n/i18n-react';
 
 type TabBarMaterialCommunityIconProps = {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
@@ -51,7 +51,7 @@ function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightPro
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const { LL } = useI18nContext();
+  const { t } = useTranslation(['basic']);
 
   return (
     <Tabs
@@ -62,7 +62,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: LL.BASIC.TAB.TITLE(),
+          title: t('basic:tab.title_basicMode'),
           tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'timer-outline', color }),
           headerRight: (props) =>
             HeaderRight({

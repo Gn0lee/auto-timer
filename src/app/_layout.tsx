@@ -8,9 +8,8 @@ import { Provider } from 'react-redux';
 
 import SpaceMono from '@assets/fonts/SpaceMono-Regular.ttf';
 import redux from '@store/redux';
-import '@i18n/polyfill/Intl';
-import useLoadLocale from '@hooks/useLoadLocale';
-import TypesafeI18n from '@i18n/i18n-react';
+
+import '@i18n/settingI18n';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -44,8 +43,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  const loadedLocale = useLoadLocale();
-
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
@@ -57,15 +54,13 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded || loadedLocale === null) {
+  if (!loaded) {
     return null;
   }
 
   return (
     <Provider store={redux}>
-      <TypesafeI18n locale={loadedLocale}>
-        <RootLayoutNav />
-      </TypesafeI18n>
+      <RootLayoutNav />
     </Provider>
   );
 }
