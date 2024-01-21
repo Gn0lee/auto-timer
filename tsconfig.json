@@ -34,8 +34,7 @@
       "@i18n/*": [
         "i18n/*"
       ]
-    },
-    "module": "nodenext"
+    }
   },
   "include": [
     "src",

@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Colors from '@const/Colors';
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
+import { useI18nContext } from '@i18n/i18n-react';
 
 type TabBarMaterialCommunityIconProps = {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
@@ -50,6 +51,8 @@ function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightPro
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
+  const { LL } = useI18nContext();
+
   return (
     <Tabs
       screenOptions={{
@@ -59,7 +62,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: '기본 모드',
+          title: LL.BASIC.TAB.TITLE(),
           tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'timer-outline', color }),
           headerRight: (props) =>
             HeaderRight({
