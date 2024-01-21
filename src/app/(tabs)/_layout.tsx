@@ -4,9 +4,9 @@ import { Link, Tabs, LinkProps } from 'expo-router';
 import { Pressable, StyleSheet, PressableProps } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@rneui/themed';
 
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
-import { useTheme } from '@rneui/themed';
 
 type TabBarMaterialCommunityIconProps = {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
