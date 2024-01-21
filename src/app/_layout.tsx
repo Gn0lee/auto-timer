@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 
 import SpaceMono from '@assets/fonts/SpaceMono-Regular.ttf';
 import redux from '@store/redux';
-
 import '@i18n/settingI18n';
 
 export {

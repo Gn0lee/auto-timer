@@ -3,15 +3,15 @@ import { initReactI18next } from 'react-i18next';
 
 import { getLocales } from 'expo-localization';
 
-import basicEn from '@i18n/en/basic.json';
-import basicKo from '@i18n/ko/basic.json';
+import commonEn from '@i18n/en/common.json';
+import commonKo from '@i18n/ko/common.json';
 
 const resources = {
   en: {
-    basic: basicEn,
+    common: commonEn,
   },
   ko: {
-    basic: basicKo,
+    common: commonKo,
   },
 };
 
@@ -24,6 +24,7 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  defaultNS: 'common',
 });
 
 export default i18n;

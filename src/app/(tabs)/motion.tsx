@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import { View } from '@components/Themed';
 import useGetDeviceMotionPermission from '@hooks/useGetDeviceMotionPermission';
 import Button from '@components/MotionTimer/Button';
-import { SafeAreaView, StyleSheet } from 'react-native';
 import Clock from '@components/MotionTimer/Clock';
 import useMotionTimerGuideHandler from '@hooks/useMotionTimerGuideHandler';
 import { useAppDispatch } from '@store/redux';

@@ -1,6 +1,5 @@
 import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import { Link, Tabs, LinkProps } from 'expo-router';
 import {
   Pressable,
@@ -51,7 +50,7 @@ function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightPro
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const { t } = useTranslation(['basic']);
+  const { t } = useTranslation(['common']);
 
   return (
     <Tabs
@@ -62,7 +61,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: t('basic:tab.title_basicMode'),
+          title: t('tab.title_basicMode'),
           tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'timer-outline', color }),
           headerRight: (props) =>
             HeaderRight({
@@ -122,6 +121,14 @@ export default function TabLayout() {
             }),
           tabBarShowLabel: false,
           title: '얼굴 감지 모드',
+        }}
+      />
+      <Tabs.Screen
+        name="setting"
+        options={{
+          tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'account', color }),
+          tabBarShowLabel: false,
+          title: t('tab.title_settings'),
         }}
       />
     </Tabs>
