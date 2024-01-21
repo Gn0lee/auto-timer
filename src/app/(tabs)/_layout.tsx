@@ -1,18 +1,12 @@
 import React from 'react';
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import { Link, Tabs, LinkProps } from 'expo-router';
-import {
-  Pressable,
-  useColorScheme,
-  ColorSchemeName,
-  StyleSheet,
-  PressableProps,
-} from 'react-native';
+import { Pressable, StyleSheet, PressableProps } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 
-import Colors from '@const/Colors';
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
+import { useTheme } from '@rneui/themed';
 
 type TabBarMaterialCommunityIconProps = {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
@@ -26,11 +20,11 @@ function TabBarMaterialCommunityIcon({ name, color }: TabBarMaterialCommunityIco
 type HeaderRightProps = {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   href: LinkProps<string>['href'];
-  colorScheme: ColorSchemeName;
   pressableProps?: PressableProps;
+  tintColor?: string;
 };
 
-function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightProps) {
+function HeaderRight({ name, href, pressableProps, tintColor }: HeaderRightProps) {
   return (
     <Link href={href} asChild>
       <Pressable {...pressableProps}>
@@ -38,7 +32,7 @@ function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightPro
           <FontAwesome
             name={name}
             size={25}
-            color={Colors[colorScheme ?? 'light'].text}
+            color={tintColor}
             style={[styles.headerRight, pressed ? styles.pressed : styles.default]}
           />
         )}
@@ -48,14 +42,27 @@ function HeaderRight({ name, href, colorScheme, pressableProps }: HeaderRightPro
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme();
 
   const { t } = useTranslation(['common']);
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: theme?.colors.black,
+        tabBarStyle: {
+          backgroundColor: theme?.colors.white,
+          borderTopColor: theme?.colors.grey5,
+        },
+        headerStyle: {
+          backgroundColor: theme?.colors.white,
+          borderBottomColor: theme?.colors.grey5,
+          shadowColor: theme?.colors.grey5,
+        },
+        headerTitleStyle: {
+          color: theme?.colors.black,
+        },
+        headerTintColor: theme?.colors.black,
       }}
     >
       <Tabs.Screen
@@ -67,7 +74,6 @@ export default function TabLayout() {
             HeaderRight({
               name: 'info-circle',
               href: '/(modal)/basic',
-              colorScheme,
               ...props,
             }),
           unmountOnBlur: true,
@@ -84,7 +90,6 @@ export default function TabLayout() {
             HeaderRight({
               name: 'info-circle',
               href: '/(modal)/motion',
-              colorScheme,
               pressableProps: {
                 onPress: async () => {
                   await AsyncStorage.setItem(
@@ -108,7 +113,6 @@ export default function TabLayout() {
             HeaderRight({
               name: 'info-circle',
               href: '/(modal)/face',
-              colorScheme,
               pressableProps: {
                 onPress: async () => {
                   await AsyncStorage.setItem(

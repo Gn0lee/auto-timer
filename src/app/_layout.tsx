@@ -1,14 +1,13 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
+
 import { useColorScheme } from 'react-native';
 import { Provider } from 'react-redux';
+import { ThemeProvider, createTheme } from '@rneui/themed';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import SpaceMono from '@assets/fonts/SpaceMono-Regular.ttf';
 import redux from '@store/redux';
 import '@i18n/settingI18n';
+import useLoadAssets from '@hooks/useLoadAssets';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -24,42 +23,49 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(modal)" options={{ presentation: 'modal', headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(modal)" options={{ presentation: 'modal', headerShown: false }} />
+    </Stack>
   );
 }
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono,
-    ...FontAwesome.font,
-  });
+  const colorScheme = useColorScheme();
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+  theme.mode = colorScheme ?? 'dark';
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  const { isReady, handleLayout } = useLoadAssets();
 
-  if (!loaded) {
+  if (!isReady) {
     return null;
   }
 
   return (
     <Provider store={redux}>
-      <RootLayoutNav />
+      <SafeAreaProvider onLayout={handleLayout}>
+        <ThemeProvider theme={theme}>
+          <RootLayoutNav />
+        </ThemeProvider>
+      </SafeAreaProvider>
     </Provider>
   );
 }
+
+const theme = createTheme({
+  lightColors: {
+    primary: '#3d5afe',
+  },
+  darkColors: {
+    primary: '#3d5afe',
+  },
+  mode: 'dark',
+  components: {
+    Text: {
+      h1Style: {
+        fontSize: 80,
+      },
+    },
+  },
+});

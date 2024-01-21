@@ -49,7 +49,8 @@ module.exports = {
     'react/no-unescaped-entities': 0,
     'react/require-default-props': 'off',
     'import/no-named-as-default': 'off',
-    '@typescript-eslint/no-empty-function': 'off'
+    '@typescript-eslint/no-empty-function': 'off',
+    'global-require': 'off',
   },
   settings: {
     'import/resolver': {
