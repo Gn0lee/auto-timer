@@ -8,7 +8,7 @@ import { getUserLocale } from '@i18n/locale-storage';
 
 const DEFAULT_LOCALE =
   Localization.getLocales()
-    .map((it) => it.languageTag)
+    .map((it) => it.languageCode)
     .find(isLocale) ?? 'en';
 
 export default function useLoadLocale() {
