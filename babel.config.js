@@ -30,6 +30,7 @@ module.exports = function (api) {
             '@store': './src/store',
             '@class': './src/class',
             '@utils': './src/utils',
+            '@i18n': './src/i18n',
           },
         },
       ],
