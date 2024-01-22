@@ -1,13 +1,13 @@
 import { SplashScreen, Stack } from 'expo-router';
 
-import { useColorScheme } from 'react-native';
 import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@rneui/themed';
+import { ThemeProvider } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import redux from '@store/redux';
 import '@i18n/settingI18n';
 import useLoadAssets from '@hooks/useLoadAssets';
+import useLayoutTheme, { rootTheme } from '@hooks/useLayoutTheme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -32,9 +32,7 @@ function RootLayoutNav() {
 }
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
-  rootTheme.mode = colorScheme ?? 'dark';
+  useLayoutTheme();
 
   const { isReady, handleLayout } = useLoadAssets();
 
@@ -52,5 +50,3 @@ export default function RootLayout() {
     </Provider>
   );
 }
-
-export const rootTheme = createTheme({});

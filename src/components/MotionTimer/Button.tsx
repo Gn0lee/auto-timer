@@ -1,9 +1,9 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, useColorScheme, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+import { useTheme } from '@rneui/themed';
 
 import { View, Text } from '@components/Themed';
 import { useAppSelector } from '@store/redux';
-import Colors from '@const/Colors';
 import useMotionTimer from '@hooks/useMotionTimer';
 
 const IconSize = 60;
@@ -16,7 +16,7 @@ interface ButtonProps {
 export default function Button({ granted, requestGrant }: ButtonProps) {
   const { start, stop, pause } = useMotionTimer();
 
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme();
 
   const { mode } = useAppSelector((state) => state.motion);
 
@@ -40,11 +40,7 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
     return (
       <View style={styles.container}>
         <Pressable onPressOut={handleTimerStart}>
-          <MaterialIcons
-            name="play-arrow"
-            size={IconSize}
-            color={Colors[colorScheme ?? 'light'].text}
-          />
+          <MaterialIcons name="play-arrow" size={IconSize} color={theme.colors.black} />
         </Pressable>
       </View>
     );
@@ -54,10 +50,10 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
     return (
       <View style={styles.container}>
         <Pressable onPressOut={handleTimerPause}>
-          <MaterialIcons name="pause" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+          <MaterialIcons name="pause" size={IconSize} color={theme.colors.black} />
         </Pressable>
         <Pressable onPressOut={handleTimerStop}>
-          <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+          <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
         </Pressable>
       </View>
     );
@@ -68,18 +64,10 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
       <View style={styles.textBox}>
         <View style={styles.container}>
           <Pressable onPressOut={handleTimerPause}>
-            <MaterialIcons
-              name="pause"
-              size={IconSize}
-              color={Colors[colorScheme ?? 'light'].text}
-            />
+            <MaterialIcons name="pause" size={IconSize} color={theme.colors.black} />
           </Pressable>
           <Pressable onPressOut={handleTimerStop}>
-            <MaterialIcons
-              name="stop"
-              size={IconSize}
-              color={Colors[colorScheme ?? 'light'].text}
-            />
+            <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
           </Pressable>
         </View>
         <Text style={styles.autoStop}>자동 일시 정지</Text>
@@ -90,14 +78,10 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
   return (
     <View style={styles.container}>
       <Pressable onPressOut={handleTimerStart}>
-        <MaterialIcons
-          name="play-arrow"
-          size={IconSize}
-          color={Colors[colorScheme ?? 'light'].text}
-        />
+        <MaterialIcons name="play-arrow" size={IconSize} color={theme.colors.black} />
       </Pressable>
       <Pressable onPressOut={handleTimerStop}>
-        <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+        <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
       </Pressable>
     </View>
   );

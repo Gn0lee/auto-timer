@@ -1,10 +1,12 @@
-import { useState } from 'react';
 import { useColorScheme, StyleSheet } from 'react-native';
 import { CheckBox, useTheme, useThemeMode } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { View, Text } from '@components/Themed';
 import Separator from '@components/Separator';
+import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
+import useGetColorMode from '@hooks/useGetColorMode';
 
 export default function ColorScheme() {
   const colorScheme = useColorScheme();
@@ -15,7 +17,11 @@ export default function ColorScheme() {
 
   const { theme } = useTheme();
 
-  const [colorMode, setColorMode] = useState<'auto' | 'dark' | 'light'>(colorScheme ?? 'auto');
+  const { colorMode, setColorMode, isReady } = useGetColorMode();
+
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
@@ -27,6 +33,7 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('auto');
           setMode(colorScheme ?? 'dark');
+          AsyncStorage.removeItem(ASYNC_STORAGE_KEYS.THEME);
         }}
         checkedIcon="dot-circle-o"
         uncheckedIcon="circle-o"
@@ -45,6 +52,8 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('light');
           setMode('light');
+
+          AsyncStorage.setItem(ASYNC_STORAGE_KEYS.THEME, ASYNC_STORAGE_VALUES.THEME.LIGHT);
         }}
         checkedIcon="dot-circle-o"
         uncheckedIcon="circle-o"
@@ -62,6 +71,7 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('dark');
           setMode('dark');
+          AsyncStorage.setItem(ASYNC_STORAGE_KEYS.THEME, ASYNC_STORAGE_VALUES.THEME.DARK);
         }}
         checkedIcon="dot-circle-o"
         uncheckedIcon="circle-o"

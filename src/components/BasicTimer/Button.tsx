@@ -1,10 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, useColorScheme, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+import { useTheme } from '@rneui/themed';
 
 import useBasicTimer from '@hooks/useBasicTimer';
 import { View } from '@components/Themed';
 import { useAppDispatch, useAppSelector } from '@store/redux';
-import Colors from '@const/Colors';
 import { setTimerMode } from '@store/basicTimerSlice';
 import { useEffect } from 'react';
 
@@ -15,7 +15,7 @@ export default function Button() {
 
   const { start, stop, pause } = useBasicTimer();
 
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme();
 
   const { mode } = useAppSelector((state) => state.timer);
 
@@ -45,11 +45,7 @@ export default function Button() {
     return (
       <View style={styles.container}>
         <Pressable onPressOut={handleTimerStart}>
-          <MaterialIcons
-            name="play-arrow"
-            size={IconSize}
-            color={Colors[colorScheme ?? 'light'].text}
-          />
+          <MaterialIcons name="play-arrow" size={IconSize} color={theme.colors.black} />
         </Pressable>
       </View>
     );
@@ -59,10 +55,10 @@ export default function Button() {
     return (
       <View style={styles.container}>
         <Pressable onPressOut={handleTimerPause}>
-          <MaterialIcons name="pause" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+          <MaterialIcons name="pause" size={IconSize} color={theme.colors.black} />
         </Pressable>
         <Pressable onPressOut={handleTimerStop}>
-          <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+          <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
         </Pressable>
       </View>
     );
@@ -71,14 +67,10 @@ export default function Button() {
   return (
     <View style={styles.container}>
       <Pressable onPressOut={handleTimerStart}>
-        <MaterialIcons
-          name="play-arrow"
-          size={IconSize}
-          color={Colors[colorScheme ?? 'light'].text}
-        />
+        <MaterialIcons name="play-arrow" size={IconSize} color={theme.colors.black} />
       </Pressable>
       <Pressable onPressOut={handleTimerStop}>
-        <MaterialIcons name="stop" size={IconSize} color={Colors[colorScheme ?? 'light'].text} />
+        <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
       </Pressable>
     </View>
   );
