@@ -1,14 +1,14 @@
 import { StyleSheet, SafeAreaView } from 'react-native';
 
 import { View } from '@components/Themed';
-import ColorScheme from '@components/Setting/ColorScheme';
+import ColorScheme from '@components/Settings/ColorScheme';
 
-export default function Setting() {
+export default function Settings() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
         <View style={styles.profileBox} />
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <View style={styles.separator} />
         <ColorScheme />
       </View>
     </SafeAreaView>

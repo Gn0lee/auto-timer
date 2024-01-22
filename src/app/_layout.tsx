@@ -34,7 +34,7 @@ function RootLayoutNav() {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-  theme.mode = colorScheme ?? 'dark';
+  rootTheme.mode = colorScheme ?? 'dark';
 
   const { isReady, handleLayout } = useLoadAssets();
 
@@ -45,7 +45,7 @@ export default function RootLayout() {
   return (
     <Provider store={redux}>
       <SafeAreaProvider onLayout={handleLayout}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={rootTheme}>
           <RootLayoutNav />
         </ThemeProvider>
       </SafeAreaProvider>
@@ -53,19 +53,4 @@ export default function RootLayout() {
   );
 }
 
-const theme = createTheme({
-  lightColors: {
-    primary: '#3d5afe',
-  },
-  darkColors: {
-    primary: '#3d5afe',
-  },
-  mode: 'dark',
-  components: {
-    Text: {
-      h1Style: {
-        fontSize: 80,
-      },
-    },
-  },
-});
+export const rootTheme = createTheme({});

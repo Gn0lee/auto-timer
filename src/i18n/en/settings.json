@@ -1,0 +1,8 @@
+{
+  "theme": {
+    "label_systemSettingMode": "System Settings Mode",
+    "label_lightMode": "Light Mode",
+    "label_darkMode": "Dark Mode",
+    "description_systemSettingMode": "The system automatically switches between light and dark modes according to the display settings."
+  }
+}

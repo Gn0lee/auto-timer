@@ -1,0 +1,8 @@
+{
+  "theme" : {
+    "label_systemSettingMode": "시스템 설정 모드",
+    "label_lightMode": "라이트 모드",
+    "label_darkMode": "다크 모드",
+    "description_systemSettingMode": "시스템 디스플레이 설정에 따라 라이트/다크 모드로 자동 전환 됩니다."
+  }
+}

@@ -1,43 +1,32 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
+import { Text as DefaultText, View as DefaultView } from 'react-native';
+import { ThemeConsumer } from '@rneui/themed';
 
-import { Text as DefaultText, useColorScheme, View as DefaultView } from 'react-native';
-
-import Colors from '@const/Colors';
-
-type ThemeProps = {
-  lightColor?: string;
-  darkColor?: string;
-};
-
-export type TextProps = ThemeProps & DefaultText['props'];
-export type ViewProps = ThemeProps & DefaultView['props'];
-
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
-
-  if (colorFromProps) {
-    return colorFromProps;
-  }
-  return Colors[theme][colorName];
-}
+export type TextProps = DefaultText['props'];
+export type ViewProps = DefaultView['props'];
 
 export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const { style, ...otherProps } = props;
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <ThemeConsumer>
+      {({ theme }) => (
+        <DefaultText style={[{ color: theme.colors.black }, style]} {...otherProps} />
+      )}
+    </ThemeConsumer>
+  );
 }
 
 export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+  const { style, ...otherProps } = props;
 
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <ThemeConsumer>
+      {({ theme }) => (
+        <DefaultView
+          style={[{ backgroundColor: theme.colors.background }, style]}
+          {...otherProps}
+        />
+      )}
+    </ThemeConsumer>
+  );
 }

@@ -6,12 +6,17 @@ import { getLocales } from 'expo-localization';
 import commonEn from '@i18n/en/common.json';
 import commonKo from '@i18n/ko/common.json';
 
+import settingsEn from '@i18n/en/settings.json';
+import settingsKo from '@i18n/ko/settings.json';
+
 const resources = {
   en: {
     common: commonEn,
+    settings: settingsEn,
   },
   ko: {
     common: commonKo,
+    settings: settingsKo,
   },
 };
 
