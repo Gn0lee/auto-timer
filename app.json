@@ -28,8 +28,9 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "foregroundImage": "./assets/images/adaptive-icon-foreground.png",
+        "backgroundColor": "#000000",
+        "backgroundImage": "./assets/images/adaptive-icon-background.png"
       },
       "package": "com.gn0lee.autotimer"
     },
