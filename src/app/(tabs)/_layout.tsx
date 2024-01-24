@@ -63,6 +63,7 @@ export default function TabLayout() {
           color: theme?.colors.black,
         },
         headerTintColor: theme?.colors.black,
+        headerTitleAlign: 'center',
       }}
     >
       <Tabs.Screen
