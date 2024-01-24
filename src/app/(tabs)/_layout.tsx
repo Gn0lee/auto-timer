@@ -63,6 +63,7 @@ export default function TabLayout() {
           color: theme?.colors.black,
         },
         headerTintColor: theme?.colors.black,
+        headerTitleAlign: 'center',
       }}
     >
       <Tabs.Screen
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     marginBottom: -3,
   },
   headerRight: {
-    marginRight: 5,
+    marginRight: 15,
   },
   pressed: {
     opacity: 0.5,
