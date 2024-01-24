@@ -7,6 +7,7 @@ import { View, Text } from '@components/Themed';
 import Separator from '@components/Separator';
 import { ASYNC_STORAGE_KEYS, ASYNC_STORAGE_VALUES } from '@const/AsyncStorage';
 import useGetColorMode from '@hooks/useGetColorMode';
+import { setStatusBarStyle } from 'expo-status-bar';
 
 export default function ColorScheme() {
   const colorScheme = useColorScheme();
@@ -33,6 +34,7 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('auto');
           setMode(colorScheme ?? 'dark');
+          setStatusBarStyle('auto');
           AsyncStorage.removeItem(ASYNC_STORAGE_KEYS.THEME);
         }}
         checkedIcon="dot-circle-o"
@@ -52,7 +54,7 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('light');
           setMode('light');
-
+          setStatusBarStyle('dark');
           AsyncStorage.setItem(ASYNC_STORAGE_KEYS.THEME, ASYNC_STORAGE_VALUES.THEME.LIGHT);
         }}
         checkedIcon="dot-circle-o"
@@ -71,6 +73,7 @@ export default function ColorScheme() {
         onPress={() => {
           setColorMode('dark');
           setMode('dark');
+          setStatusBarStyle('light');
           AsyncStorage.setItem(ASYNC_STORAGE_KEYS.THEME, ASYNC_STORAGE_VALUES.THEME.DARK);
         }}
         checkedIcon="dot-circle-o"
