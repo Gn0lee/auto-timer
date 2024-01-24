@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginBottom: -3,
   },
   headerRight: {
-    marginRight: 5,
+    marginRight: 15,
   },
   pressed: {
     opacity: 0.5,
