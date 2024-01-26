@@ -84,7 +84,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="motion"
         options={{
-          title: '움직임 감지 모드',
+          title: t('tab.title_detectMotionMode'),
           tabBarIcon: ({ color }) => TabBarMaterialCommunityIcon({ name: 'flip-to-back', color }),
           unmountOnBlur: true,
           headerRight: (props) =>
@@ -125,7 +125,7 @@ export default function TabLayout() {
               ...props,
             }),
           tabBarShowLabel: false,
-          title: '얼굴 감지 모드',
+          title: t('tab.title_detectFaceMode'),
         }}
       />
       <Tabs.Screen

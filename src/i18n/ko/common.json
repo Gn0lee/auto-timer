@@ -1,7 +1,9 @@
 {
   "tab": {
     "title_basicMode": "기본 모드",
-    "title_settings": "설정"
+    "title_settings": "설정",
+    "title_detectMotionMode": "움직임 감지 모드",
+    "title_detectFaceMode": "얼굴 감지 모드"
   },
   "modal": {
     "title_notice": "유의사항"

@@ -1,7 +1,9 @@
 {
   "tab": {
     "title_basicMode": "Basic Mode",
-    "title_settings": "Settings"
+    "title_settings": "Settings",
+    "title_detectMotionMode": "Detect Motion Mode",
+    "title_detectFaceMode": "Detect Face Mode"
   },
   "modal": {
     "title_notice": "Notice"
