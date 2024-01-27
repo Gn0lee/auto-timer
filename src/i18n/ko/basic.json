@@ -1,0 +1,10 @@
+{
+  "modal": {
+    "description_timerBasic": "기본적인 형태의 타이머입니다.",
+    "description_playFunction": "재생 버튼 클릭 시 타이머가 동작합니다.",
+    "description_pauseFunction": "일시정지 버튼 클릭 시 타이머가 일시정지합니다.",
+    "description_stopInPause": "일시정지 상태에서 정지 버튼 클릭 시 타이머가 초기화 됩니다.",
+    "description_resumeAfterPause": "일시정지 상태에서 재생 버튼 클릭 시 타이머가 다시 동작합니다.",
+    "description_noRecordOnExit": "앱을 종료하거나 기기 전원이 꺼질 경우 시간이 기록되지 않습니다."
+  }
+}

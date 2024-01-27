@@ -1,23 +1,19 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-
 import { Text, View } from '@components/Themed';
+import { useTranslation } from 'react-i18next';
 
 export default function UserGuide() {
+  const { t } = useTranslation(['basic']);
+
   return (
     <View style={styles.getStartedContainer}>
-      <Text style={styles.getStartedText}>기본적인 형태의 타이머입니다.</Text>
-      <Text style={styles.getStartedText}>재생 버튼 클릭 시 타이머가 동작합니다.</Text>
-      <Text style={styles.getStartedText}>일시정지 버튼 클릭 시 타이머가 일시정지합니다.</Text>
-      <Text style={styles.getStartedText}>
-        일시정지 상태에서 정지 버튼 클릭 시 타이머가 초기화 됩니다.
-      </Text>
-      <Text style={styles.getStartedText}>
-        일시정지 상태에서 재생 버튼 클릭 시 타이머가 재시작합니다.
-      </Text>
-      <Text style={styles.getStartedText}>
-        앱을 종료하거나 기기 전원이 꺼질 경우 시간이 기록되지 않습니다.
-      </Text>
+      <Text style={styles.getStartedText}>{t('modal.description_timerBasic')}</Text>
+      <Text style={styles.getStartedText}>{t('modal.description_playFunction')}</Text>
+      <Text style={styles.getStartedText}>{t('modal.description_pauseFunction')}</Text>
+      <Text style={styles.getStartedText}>{t('modal.description_stopInPause')}</Text>
+      <Text style={styles.getStartedText}>{t('modal.description_resumeAfterPause')}</Text>
+      <Text style={styles.getStartedText}>{t('modal.description_noRecordOnExit')}</Text>
     </View>
   );
 }

@@ -9,14 +9,19 @@ import commonKo from '@i18n/ko/common.json';
 import settingsEn from '@i18n/en/settings.json';
 import settingsKo from '@i18n/ko/settings.json';
 
+import basicEn from '@i18n/en/basic.json';
+import basicKo from '@i18n/ko/basic.json';
+
 const resources = {
   en: {
     common: commonEn,
     settings: settingsEn,
+    basic: basicEn,
   },
   ko: {
     common: commonKo,
     settings: settingsKo,
+    basic: basicKo,
   },
 };
 

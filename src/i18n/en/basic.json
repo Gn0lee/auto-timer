@@ -1,0 +1,10 @@
+{
+  "modal": {
+    "description_timerBasic": "This is a basic form of timer.",
+    "description_playFunction": "The timer starts when you click the play button.",
+    "description_pauseFunction": "The timer pauses when you click the pause button.",
+    "description_stopInPause": "The timer resets when you click the stop button while paused.",
+    "description_resumeAfterPause": "The timer resumes when you click the play button after pausing.",
+    "description_noRecordOnExit": "Time is not recorded if the app is closed or the device is turned off."
+  }
+}
