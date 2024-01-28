@@ -1,0 +1,14 @@
+{
+  "modal": {
+    "description_detectMotion": "This is a timer that detects the movement of the device.",
+    "description_enableMotion": "To use this feature, you must allow Motion detection.",
+    "description_noLockMode": "The device will not switch to lock mode while using this feature.",
+    "description_autoStop": "The timer automatically stops when the battery level is {platformBatteryLevel}.",
+    "description_recommendCharging": "It is recommended to use the device while charging.",
+    "description_flipToStart": "After clicking the play button, the timer starts when you flip the screen.",
+    "description_flipToPause": "While the timer is running, if the screen moves forward, the timer pauses and resumes when flipped again."
+  },
+  "button": {
+    "description_autoPause": "Pause By Sensor"
+  }
+}
