@@ -1,0 +1,14 @@
+{
+  "modal": {
+    "description_detectFace": "This is a timer that detects the user's face.",
+    "description_enableCamera": "To use this feature, you must allow camera access.",
+    "description_noLockMode": "The device will not switch to lock mode while using this feature.",
+    "description_autoStop": "The timer automatically stops when the battery level is {platformBatteryLevel}.",
+    "description_recommendCharging": "It is recommended to use the device while charging.",
+    "description_startOnFaceDetection": "The timer starts when a face is detected after clicking the play button.",
+    "description_pauseOnFaceLoss": "The timer automatically pauses when no face is detected and resumes when a face is detected again."
+  },
+  "button": {
+    "description_autoPause": "Pause By Sensor"
+  }
+}

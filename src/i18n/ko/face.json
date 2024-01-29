@@ -1,0 +1,14 @@
+{
+  "modal": {
+    "description_detectFace": "사용자의 얼굴을 감지하는 타이머입니다.",
+    "description_enableCamera": "해당 기능을 사용하기 위해서는 카메라 기능을 허용해야 합니다.",
+    "description_noLockMode": "해당 기능 사용중에는 기기가 잠금 모드로 전환되지 않습니다.",
+    "description_autoStop": "배터리 잔량이 {platformBatteryLevel} 타이머가 자동으로 정지됩니다.",
+    "description_recommendCharging": "기기를 충전하며 사용하는 것을 권장드립니다.",
+    "description_startOnFaceDetection": "재생 버튼 클릭 후 얼굴이 인식되면 타이머가 시작됩니다.",
+    "description_pauseOnFaceLoss": "타이머 동작중 얼굴이 감지되지 않으면 자동으로 일시정지되며 다시 얼굴이 감지되면 타이머가 작동됩니다."
+  },
+  "button": {
+    "description_autoPause": "자동 일시 정지"
+  }
+}

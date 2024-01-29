@@ -1,6 +1,7 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Pressable, StyleSheet } from 'react-native';
 import { useTheme } from '@rneui/themed';
+import { useTranslation } from 'react-i18next';
 
 import { View, Text } from '@components/Themed';
 import { useAppSelector } from '@store/redux';
@@ -15,6 +16,8 @@ interface ButtonProps {
 
 export default function Button({ granted, requestGrant }: ButtonProps) {
   const { start, stop, pause } = useFaceTimer();
+
+  const { t } = useTranslation(['face']);
 
   const { theme } = useTheme();
 
@@ -70,7 +73,7 @@ export default function Button({ granted, requestGrant }: ButtonProps) {
             <MaterialIcons name="stop" size={IconSize} color={theme.colors.black} />
           </Pressable>
         </View>
-        <Text style={styles.autoStop}>자동 일시 정지</Text>
+        <Text style={styles.autoStop}>{t('button.description_autoPause')}</Text>
       </View>
     );
   }
