@@ -2,7 +2,8 @@
   "expo": {
     "name": "Smart Timer",
     "slug": "auto-timer",
-    "version": "1.0.0",
+    "owner": "gn0lee",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
