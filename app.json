@@ -3,7 +3,7 @@
     "name": "Smart Timer",
     "slug": "auto-timer",
     "owner": "gn0lee",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -33,7 +33,8 @@
         "backgroundColor": "#000000",
         "backgroundImage": "./assets/images/adaptive-icon-background.png"
       },
-      "package": "com.gn0lee.autotimer"
+      "package": "com.gn0lee.autotimer",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",

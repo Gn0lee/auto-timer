@@ -15,18 +15,23 @@ import basicKo from '@i18n/ko/basic.json';
 import motionEn from '@i18n/en/motion.json';
 import motionKo from '@i18n/ko/motion.json';
 
+import faceEn from '@i18n/en/face.json';
+import faceKo from '@i18n/ko/face.json';
+
 const resources = {
   en: {
     common: commonEn,
     settings: settingsEn,
     basic: basicEn,
     motion: motionEn,
+    face: faceEn,
   },
   ko: {
     common: commonKo,
     settings: settingsKo,
     basic: basicKo,
     motion: motionKo,
+    face: faceKo,
   },
 };
 
