@@ -20,7 +20,14 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "image": "default"
+      },
+      "android": {
+        "image": "default"
+      }
+    }
   },
   "submit": {
     "production": {}
