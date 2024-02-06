@@ -18,7 +18,8 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.gn0lee.autotimer"
+      "bundleIdentifier": "com.gn0lee.autotimer",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
