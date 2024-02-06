@@ -18,14 +18,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.gn0lee.autotimer",
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "location",
-          "fetch",
-          "remote-notification"
-        ]
-      }
+      "bundleIdentifier": "com.gn0lee.autotimer"
     },
     "android": {
       "adaptiveIcon": {
