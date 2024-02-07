@@ -19,7 +19,11 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.gn0lee.autotimer",
-      "buildNumber": "2"
+      "buildNumber": "3",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to find user's face and decide to run the timer or not. This app doesn't store any images or videos.",
+        "NSMotionUsageDescription": "This app uses the motion sensor to detect user's movement and decide to run the timer or not. This app doesn't store any data related to the motion sensor."
+      }
     },
     "android": {
       "adaptiveIcon": {
