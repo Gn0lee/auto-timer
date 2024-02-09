@@ -1,4 +1,5 @@
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 import { View } from '@components/Themed';
 import Clock from '@components/BasicTimer/Clock';
@@ -8,6 +9,7 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.box}>
+        <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.BANNER} />
         <Clock />
         <Button />
       </View>
