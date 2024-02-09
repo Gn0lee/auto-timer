@@ -4,3 +4,4 @@ metro.config.js
 tsconfig.json
 node_modules
 .eslintrc.js
+app.config.js
