@@ -71,12 +71,19 @@
       },
       "eas": {
         "projectId": "ec47bec6-b931-41de-b09a-c71ba101402b"
+      },
+      "react-native-google-ads": {
+        "adUnitId": {
+          "android": "ca-app-pub-3940256099942544~3347511713",
+          "ios": "ca-app-pub-3727211862810946~7317323989"
+        },
+        "ios_app_id": "ca-app-pub-3727211862810946~7317323989"
       }
     }
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-3940256099942544~3347511713",
-    "ios_app_id": "ca-app-pub-3940256099942544~1458002511",
+    "ios_app_id": "ca-app-pub-3727211862810946~7317323989",
     "sk_ad_network_items": [
       "cstr6suwn9.skadnetwork",
       "4fzdc2evr5.skadnetwork",
