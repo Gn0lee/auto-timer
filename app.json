@@ -59,13 +59,6 @@
             "useFrameworks": "static"
           }
         }
-      ],
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAdMobAppId": "ca-app-pub-3940256099942544~3347511713",
-          "iosAdMobAppId": "ca-app-pub-3727211862810946~7317323989"
-        }
       ]
     ],
     "experiments": {
@@ -80,12 +73,11 @@
         "projectId": "ec47bec6-b931-41de-b09a-c71ba101402b"
       },
       "react-native-google-mobile-ads": {
-        "adUnitId": {
-          "android": "ca-app-pub-3940256099942544~3347511713",
-          "ios": "ca-app-pub-3727211862810946~7317323989"
-        },
         "ios_app_id": "ca-app-pub-3727211862810946~7317323989"
       }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "ios_app_id": "ca-app-pub-3727211862810946~7317323989"
   }
 }

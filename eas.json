@@ -6,11 +6,14 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env" : {
+      "env": {
         "DEBUG_MODE": "true"
       },
       "ios": {
-        "image": "default"
+        "image": "default",
+        "react-native-google-mobile-ads": {
+          "ios_app_id": "ca-app-pub-3727211862810946~7317323989"
+        }
       },
       "android": {
         "image": "default"
