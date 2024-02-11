@@ -6,8 +6,14 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env" : {
+      "env": {
         "DEBUG_MODE": "true"
+      },
+      "ios": {
+        "image": "default"
+      },
+      "android": {
+        "image": "default"
       }
     },
     "development-simulator": {

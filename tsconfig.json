@@ -38,9 +38,9 @@
   },
   "include": [
     "src",
-    ".expo/types/**/*.ts",
     "src/types/expo-env.d.ts",
     "src/types",
+    ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ],
   "exclude": [
